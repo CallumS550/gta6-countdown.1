@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#160d2d">
+<title>GTA VI — The Countdown</title>
+<style>
+  :root { color-scheme: dark; --pink:#e99acb; --cyan:#75d9df; --gold:#f4c6dc; }
+  * { box-sizing: border-box; }
+  html,body { margin:0; min-height:100%; background:#21182d; color:#fff; font-family:Arial,Helvetica,sans-serif; }
+  body { min-height:100vh; display:grid; place-items:center; overflow-x:hidden; padding:24px; }
+  .scene {
+    width:min(1100px,100%); min-height:650px; position:relative; overflow:hidden;
+    border:1px solid rgba(255,255,255,.18); border-radius:24px;
+    background:
+      linear-gradient(180deg,rgba(16,10,38,.08) 0%,rgba(21,10,42,.12) 34%,#1a1034 72%,#100b22 100%),
+      radial-gradient(ellipse at 50% 37%,#ff9b9b 0%,#ff65a8 18%,#9255b9 39%,#29205b 68%,#11102d 100%);
+    box-shadow:0 24px 90px rgba(0,0,0,.55);
+    display:flex; flex-direction:column; align-items:center; text-align:center; padding:48px 28px 30px;
+  }
+  .sun { position:absolute; width:min(42vw,380px); aspect-ratio:1; border-radius:50%; top:90px; left:50%; transform:translateX(-50%);
+    background:linear-gradient(180deg,#ffe3a0 0%,#ffb2a2 42%,#ff5caa 100%);
+    box-shadow:0 0 80px rgba(255,100,180,.55); opacity:.9; }
+  .sun:after { content:""; position:absolute; inset:56% 0 0; background:repeating-linear-gradient(to bottom,transparent 0 12px,rgba(45,31,58,.92) 13px 18px); }
+  .horizon { position:absolute; bottom:0; left:0; right:0; height:43%; background:linear-gradient(180deg,transparent,#38243f 20%,#21182d 100%); }
+  .palm { position:absolute; bottom:17%; width:190px; height:340px; opacity:.9; z-index:1; }
+  .palm.left { left:-18px; transform:rotate(-8deg); }
+  .palm.right { right:-18px; transform:scaleX(-1) rotate(-8deg); }
+  .palm:before { content:""; position:absolute; left:88px; bottom:0; width:13px; height:245px; background:#30243b; transform:rotate(8deg); border-radius:100% 0 0 0; }
+  .frond { position:absolute; left:88px; bottom:220px; width:120px; height:28px; background:#30243b; border-radius:100% 0 100% 0; transform-origin:left center; }
+  .frond:nth-child(1){transform:rotate(-155deg)} .frond:nth-child(2){transform:rotate(-125deg)}
+  .frond:nth-child(3){transform:rotate(-95deg)} .frond:nth-child(4){transform:rotate(-60deg)}
+  .frond:nth-child(5){transform:rotate(-25deg)} .frond:nth-child(6){transform:rotate(12deg)}
+  .content { position:relative; z-index:2; width:100%; }
+  .eyebrow { letter-spacing:.42em; text-transform:uppercase; font-size:12px; color:#f8e4f1; text-shadow:0 2px 12px #38154c; }
+  h1 { margin:14px 0 4px; font-size:clamp(58px,11vw,118px); line-height:.9; letter-spacing:-.075em; font-weight:1000;
+    color:#fff; text-shadow:4px 5px 0 #d88fbd,8px 10px 0 rgba(49,35,65,.72),0 0 32px rgba(255,255,255,.3); }
+  .subtitle { margin:15px 0 34px; font-size:clamp(13px,2vw,18px); letter-spacing:.32em; text-transform:uppercase; color:#f8e4f1; }
+  .timer { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; width:min(760px,100%); margin:0 auto; }
+  .unit { padding:18px 8px 15px; border:1px solid rgba(244,213,235,.48); border-radius:14px; background:rgba(52,39,66,.62); backdrop-filter:blur(8px); box-shadow:0 10px 30px rgba(0,0,0,.2); }
+  .num { display:block; font-variant-numeric:tabular-nums; font-size:clamp(32px,6vw,64px); line-height:1; font-weight:800; color:#fff; text-shadow:0 0 18px rgba(117,217,223,.5); }
+  .unit span:last-child { display:block; margin-top:10px; font-size:10px; letter-spacing:.28em; color:#91e3e5; text-transform:uppercase; }
+  .date { margin:24px 0 0; color:#f8e4f1; font-size:13px; letter-spacing:.18em; text-transform:uppercase; }
+  .status { margin:12px 0 0; min-height:20px; color:#fff; font-size:14px; }
+  .footer { margin-top:34px; font-size:10px; letter-spacing:.24em; text-transform:uppercase; color:rgba(255,255,255,.6); }
+  @media(max-width:560px) {
+    .scene{min-height:590px;padding:42px 15px 24px;border-radius:16px}
+    .sun{width:75vw;top:125px}
+    .palm{transform:scale(.72);transform-origin:bottom left;left:-52px}
+    .palm.right{transform:scaleX(-1) scale(.72);transform-origin:bottom right;right:-52px}
+    .timer{gap:7px}.unit{padding:15px 3px 12px}.unit span:last-child{font-size:8px;letter-spacing:.15em}
+    .subtitle{letter-spacing:.18em;margin-bottom:28px}
+  }
+</style>
+  <meta name="description" content="A live countdown to Grand Theft Auto VI. Welcome back to Vice City — release day is 19 November 2026.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GTA VI Countdown">
+  <meta property="og:title" content="GTA VI — Welcome Back to Vice City">
+  <meta property="og:description" content="The wait is almost over. Follow the live countdown to 19 November 2026.">
+  <meta property="og:url" content="https://callums550.github.io/gta6-countdown.1/">
+  <meta property="og:image" content="https://callums550.github.io/gta6-countdown.1/og-preview.png">
+  <meta property="og:image:secure_url" content="https://callums550.github.io/gta6-countdown.1/og-preview.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GTA VI — Welcome Back to Vice City">
+  <meta name="twitter:description" content="The wait is almost over. Follow the live countdown to 19 November 2026.">
+  <meta name="twitter:image" content="https://callums550.github.io/gta6-countdown.1/og-preview.png">
+</head>
+<body>
+<main class="scene" aria-label="Grand Theft Auto VI countdown">
+  <div class="sun"></div><div class="horizon"></div>
+  <div class="palm left"><i class="frond"></i><i class="frond"></i><i class="frond"></i><i class="frond"></i><i class="frond"></i><i class="frond"></i></div>
+  <div class="palm right"><i class="frond"></i><i class="frond"></i><i class="frond"></i><i class="frond"></i><i class="frond"></i><i class="frond"></i></div>
+  <section class="content">
+    <div class="eyebrow">The wait is almost over</div>
+    <h1>VI</h1>
+    <div class="subtitle">Welcome back to Vice City</div>
+    <div class="timer" role="timer" aria-live="off">
+      <div class="unit"><strong class="num" id="days">000</strong><span>Days</span></div>
+      <div class="unit"><strong class="num" id="hours">00</strong><span>Hours</span></div>
+      <div class="unit"><strong class="num" id="minutes">00</strong><span>Minutes</span></div>
+      <div class="unit"><strong class="num" id="seconds">00</strong><span>Seconds</span></div>
+    </div>
+    <div class="date">19 November 2026 · Release day</div>
+    <div class="status" id="status">Every second brings us closer.</div>
+    <div class="footer">Leonida is calling</div>
+  </section>
+</main>
+<script>
+  // Countdown targets midnight at the start of 19 November 2026 in UK local time.
+  const target = new Date(2026, 10, 19, 0, 0, 0).getTime();
+  const el = id => document.getElementById(id);
+  function update() {
+    let diff = target - Date.now();
+    if (diff <= 0) {
+      ["days","hours","minutes","seconds"].forEach(id => el(id).textContent = id === "days" ? "000" : "00");
+      el("status").textContent = "It's time. Welcome to Vice City.";
+      return;
+    }
+    const days = Math.floor(diff / 86400000); diff %= 86400000;
+    const hours = Math.floor(diff / 3600000); diff %= 3600000;
+    const minutes = Math.floor(diff / 60000); diff %= 60000;
+    const seconds = Math.floor(diff / 1000);
+    el("days").textContent = String(days).padStart(3,"0");
+    el("hours").textContent = String(hours).padStart(2,"0");
+    el("minutes").textContent = String(minutes).padStart(2,"0");
+    el("seconds").textContent = String(seconds).padStart(2,"0");
+  }
+  update(); setInterval(update, 1000);
+</script>
+</body>
+</html>
